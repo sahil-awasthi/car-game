@@ -1,8 +1,8 @@
-const score = document.getElementById('score')
+const score = document.querySelector('.score')
 const startScreen = document.querySelector('.start-screen')
 const gameScreen = document.querySelector('.game-screen')
 let hotKey = {ArrowUp:false,ArrowDown:false,ArrowRight:false,ArrowLeft:false}
-let player = {speed:5}
+let player = {speed:5, score:0}
 document.addEventListener('keydown',keydown)
 document.addEventListener('keyup',keyup)
 
@@ -34,7 +34,8 @@ function moveEnemy(mainCar){
   enemy.forEach(function(item) {
 
       if(isCollide(mainCar, item )){
-        console.log('you hit');
+        console.log('you are hit');
+        endGame()
       }
 
     if(item.y>=750){
@@ -47,6 +48,17 @@ function moveEnemy(mainCar){
 
 }
 
+function endGame(){
+  player.start = false;
+  startScreen.classList.remove('hide')
+  gameScreen.classList.add('hide')
+  gameScreen.innerHTML =""
+  startScreen.innerHTML= "Game Over <br> Your final score is "+
+   player.score+ " <br> Press here to restart the Game. ";
+}
+
+
+
 function gamePlay(){
   let mainCar = document.querySelector('.car-main')
   let road = gameScreen.getBoundingClientRect()
@@ -57,8 +69,8 @@ function gamePlay(){
     if (hotKey.ArrowUp && player.y >road.top + 100) {
       player.y -=player.speed;
     }
-    if (hotKey.ArrowDown && player.y < (road.bottom - 90)) {
-      player.y +=player.speed;
+    if (hotKey.ArrowDown && player.y < (road.bottom - 100)) {
+      player.y +=player.speed*1.5;
     }
     if (hotKey.ArrowRight && player.x <(road.width - 60)) {
       player.x +=player.speed;
@@ -69,13 +81,18 @@ function gamePlay(){
     mainCar.style.top = player.y + "px"
     mainCar.style.left = player.x + "px"
     window.requestAnimationFrame(gamePlay)
+    player.score++
+    let ps = player.score -1
+    score.innerText ="Score: " + ps
   }
 }
 
 function start(){
   player.start = true
+  player.score =0
   startScreen.classList.add('hide')
   gameScreen.classList.remove('hide')
+  gameScreen.innerHTML =""
   window.requestAnimationFrame(gamePlay)
 
   for(x=0; x<6; x++){
