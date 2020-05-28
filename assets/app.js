@@ -8,11 +8,52 @@ document.addEventListener('keyup',keyup)
 
 startScreen.addEventListener('click', start)
 
+function isCollide(a,b){
+  aRect = a.getBoundingClientRect()
+  bRect = b.getBoundingClientRect()
+
+  return !((aRect.top > bRect.bottom) || (aRect.bottom < bRect.top) ||(aRect.right < bRect.left) ||(aRect.left > bRect.right))
+}
+
+function moveLines(){
+  let lines = document.querySelectorAll('.lines')
+
+  lines.forEach((item) => {
+    if(item.y>=900){
+      item.y -=960
+    }
+    item.y += player.speed
+    item.style.top =item.y + "px"
+  });
+
+}
+
+function moveEnemy(mainCar){
+  let enemy = document.querySelectorAll('.enemy')
+
+  enemy.forEach(function(item) {
+
+      if(isCollide(mainCar, item )){
+        console.log('you hit');
+      }
+
+    if(item.y>=750){
+      item.y = -300
+      item.style.left = Math.floor(Math.random()*350)+"px"
+    }
+    item.y += player.speed
+    item.style.top =item.y + "px"
+  });
+
+}
+
 function gamePlay(){
   let mainCar = document.querySelector('.car-main')
   let road = gameScreen.getBoundingClientRect()
 
   if (player.start){
+    moveLines()
+    moveEnemy(mainCar)
     if (hotKey.ArrowUp && player.y >road.top + 100) {
       player.y -=player.speed;
     }
@@ -37,10 +78,11 @@ function start(){
   gameScreen.classList.remove('hide')
   window.requestAnimationFrame(gamePlay)
 
-  for(x=0; x<5; x++){
+  for(x=0; x<6; x++){
     let roadLine = document.createElement('div')
     roadLine.setAttribute('class','lines')
-    roadLine.style.top =(x*150) + "px"
+    roadLine.y = (x*160)
+    roadLine.style.top =roadLine.y + "px"
     gameScreen.appendChild(roadLine)
   }
 
@@ -50,6 +92,15 @@ function start(){
 
   player.x = mainCar.offsetLeft
   player.y = mainCar.offsetTop
+
+  for(x=0; x<3; x++){
+    let enemyCar = document.createElement('div')
+    enemyCar.setAttribute('class','enemy')
+    enemyCar.y = ((x+1) * 350) * -1
+    enemyCar.style.top =enemyCar.y + "px"
+    enemyCar.style.left = Math.floor(Math.random()*350)+"px"
+    gameScreen.appendChild(enemyCar)
+  }
 
 
 
