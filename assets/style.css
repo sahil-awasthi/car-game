@@ -1,0 +1,89 @@
+  html,body{
+  margin: 0;
+  height: 100%;
+}
+
+#aside-left{
+    display: inline-block;
+    background-color: #383b36;
+    height: 100%;
+    width: 30%;
+    float: left;
+}
+#center{
+  display: inline-block;
+  background-color: #73e9e6;
+  height: 100%;
+  width: 40%;
+  float: left;
+  position: relative;
+}
+.car-main{
+  width: 60px;
+  height: 90px;
+  position: absolute;
+  left: 45%;
+  bottom: 2px;
+  background-color: red;
+}
+.start-screen{
+  width: 80%;
+  height: 50px;
+  margin: 50% auto;
+  background-color: blue;
+}
+.start-screen p{
+    position: absolute;
+    left: 37%;
+}
+#aside-right{
+    display: inline-block;
+    background-color: #383b36;
+    height: 100%;
+    width: 30%;
+}
+#score{
+  height: 4.5%;
+  width: 50%;
+  margin: 14% 22%;
+  background-color: red;
+}
+#score p{
+  position: absolute;
+  left: 6%;
+  top: 5%;
+}
+.game-screen{
+  position: relative;
+  display: inline-block;
+  background-color: #73e9e6;
+  height: 100%;
+  width: 100%;
+  float: left;
+  overflow: hidden;
+}
+.lines{
+  width: 10px;
+  height: 100px;
+  background-color: white;
+  margin:0 auto;
+}
+.hide{
+  display: none;
+}
+
+/* .car-main{
+  width: 50px;
+  height: 70px;
+  background-color: red;
+  position: absolute;
+  bottom: 120px;
+}
+.game-screen{
+  width: 400px;
+  height: 100vh;
+  background-color: black;
+  margin:auto;
+  position: relative;
+  overflow: hidden;
+} */
