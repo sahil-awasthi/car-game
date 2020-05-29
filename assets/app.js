@@ -2,7 +2,7 @@ const score = document.querySelector('.score')
 const startScreen = document.querySelector('.start-screen')
 const gameScreen = document.querySelector('.game-screen')
 let hotKey = {ArrowUp:false,ArrowDown:false,ArrowRight:false,ArrowLeft:false}
-let player = {speed:8, score:0}
+let player = {speed:6, score:0}
 document.addEventListener('keydown',keydown)
 document.addEventListener('keyup',keyup)
 
@@ -54,7 +54,7 @@ function endGame(){
   gameScreen.classList.add('hide')
   gameScreen.innerHTML =""
   startScreen.innerHTML= "Game Over <br> Your final score is "+
-   player.score+ " <br> Press here to restart the Game. ";
+  player.score+ " <br> Press here to restart the Game. ";
 }
 
 
@@ -72,7 +72,7 @@ function gamePlay(){
     if (hotKey.ArrowDown && player.y < (road.bottom - 130)) {
       player.y +=player.speed*1.5;
     }
-    if (hotKey.ArrowRight && player.x <(road.width - 110)) {
+    if (hotKey.ArrowRight && player.x <(road.width - 80)) {
       player.x +=player.speed;
     }
     if (hotKey.ArrowLeft && player.x > 0 ) {
@@ -115,7 +115,7 @@ function start(){
     enemyCar.setAttribute('class','enemy')
     enemyCar.y = ((x+1) * 360) * -1
     enemyCar.style.top =enemyCar.y + "px"
-    enemyCar.style.left = Math.floor(Math.random()*500)+"px"
+    enemyCar.style.left = Math.floor(Math.random()*350)+"px"
     console.log(enemyCar.style.left)
     gameScreen.appendChild(enemyCar)
   }
