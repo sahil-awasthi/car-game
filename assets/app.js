@@ -2,7 +2,7 @@ const score = document.querySelector('.score')
 const startScreen = document.querySelector('.start-screen')
 const gameScreen = document.querySelector('.game-screen')
 let hotKey = {ArrowUp:false,ArrowDown:false,ArrowRight:false,ArrowLeft:false}
-let player = {speed:6, score:0}
+let player = {speed:8, score:0}
 document.addEventListener('keydown',keydown)
 document.addEventListener('keyup',keyup)
 
