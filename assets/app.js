@@ -2,7 +2,7 @@ const score = document.querySelector('.score')
 const startScreen = document.querySelector('.start-screen')
 const gameScreen = document.querySelector('.game-screen')
 let hotKey = {ArrowUp:false,ArrowDown:false,ArrowRight:false,ArrowLeft:false}
-let player = {speed:5, score:0}
+let player = {speed:8, score:0}
 document.addEventListener('keydown',keydown)
 document.addEventListener('keyup',keyup)
 
@@ -39,7 +39,7 @@ function moveEnemy(mainCar){
       }
 
     if(item.y>=750){
-      item.y = -300
+      item.y = -700
       item.style.left = Math.floor(Math.random()*350)+"px"
     }
     item.y += player.speed
@@ -69,10 +69,10 @@ function gamePlay(){
     if (hotKey.ArrowUp && player.y >road.top + 100) {
       player.y -=player.speed;
     }
-    if (hotKey.ArrowDown && player.y < (road.bottom - 100)) {
+    if (hotKey.ArrowDown && player.y < (road.bottom - 130)) {
       player.y +=player.speed*1.5;
     }
-    if (hotKey.ArrowRight && player.x <(road.width - 60)) {
+    if (hotKey.ArrowRight && player.x <(road.width - 110)) {
       player.x +=player.speed;
     }
     if (hotKey.ArrowLeft && player.x > 0 ) {
@@ -110,12 +110,13 @@ function start(){
   player.x = mainCar.offsetLeft
   player.y = mainCar.offsetTop
 
-  for(x=0; x<3; x++){
+  for(x=0; x<4; x++){
     let enemyCar = document.createElement('div')
     enemyCar.setAttribute('class','enemy')
-    enemyCar.y = ((x+1) * 350) * -1
+    enemyCar.y = ((x+1) * 360) * -1
     enemyCar.style.top =enemyCar.y + "px"
-    enemyCar.style.left = Math.floor(Math.random()*350)+"px"
+    enemyCar.style.left = Math.floor(Math.random()*500)+"px"
+    console.log(enemyCar.style.left)
     gameScreen.appendChild(enemyCar)
   }
 
